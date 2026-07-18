@@ -22,7 +22,7 @@ function SignInForm() {
     if (token && userParam) {
       localStorage.setItem("memberhub_token", token);
       localStorage.setItem("memberhub_user", userParam);
-      router.replace("/memberhub/dashboard");
+      router.replace("/dashboard");
     }
   }, [params, router]);
 
@@ -33,7 +33,7 @@ function SignInForm() {
     try {
       if (tab === "login") await login(email, password);
       else await register(email, password, name);
-      router.push("/memberhub/dashboard");
+      router.push("/dashboard");
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {

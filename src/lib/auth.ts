@@ -25,7 +25,7 @@ export async function register(email: string, password: string, name?: string) {
 export function logout() {
   localStorage.removeItem("memberhub_token");
   localStorage.removeItem("memberhub_user");
-  window.location.href = "/memberhub";
+  window.location.href = "/";
 }
 
 export function getUser() {

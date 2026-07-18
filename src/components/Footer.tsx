@@ -12,9 +12,9 @@ export default function Footer() {
         <span style={{ fontWeight: 700, fontSize: 16 }} className="gradient-text">MemberHub</span>
       </div>
       <div style={{ display: "flex", gap: 24, fontSize: 13, color: "#6b7280" }}>
-        <Link href="/memberhub/about" style={{ color: "#6b7280" }}>About</Link>
-        <Link href="/memberhub/privacy" style={{ color: "#6b7280" }}>Privacy</Link>
-        <Link href="/memberhub/terms" style={{ color: "#6b7280" }}>Terms</Link>
+        <Link href="/about" style={{ color: "#6b7280" }}>About</Link>
+        <Link href="/privacy" style={{ color: "#6b7280" }}>Privacy</Link>
+        <Link href="/terms" style={{ color: "#6b7280" }}>Terms</Link>
       </div>
       <p style={{ fontSize: 12, color: "#4b5563" }}>
         &copy; {new Date().getFullYear()} MemberHub by SolvateX. All rights reserved.

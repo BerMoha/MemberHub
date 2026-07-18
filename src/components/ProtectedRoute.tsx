@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
 
   useEffect(() => {
     const token = localStorage.getItem("memberhub_token");
-    if (!token) { router.replace("/memberhub/signin"); return; }
+    if (!token) { router.replace("/signin"); return; }
     setOk(true);
   }, [router]);
 

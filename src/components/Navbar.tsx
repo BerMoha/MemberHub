@@ -17,13 +17,13 @@ export default function Navbar() {
 
   const links = user
     ? [
-        { href: "/memberhub/dashboard", label: "Dashboard" },
-        ...(user.role === "admin" ? [{ href: "/memberhub/admin", label: "Admin" }] : []),
-        { href: "/memberhub/profile", label: "Profile" },
+        { href: "/dashboard", label: "Dashboard" },
+        ...(user.role === "admin" ? [{ href: "/admin", label: "Admin" }] : []),
+        { href: "/profile", label: "Profile" },
       ]
     : [
-        { href: "/memberhub/pricing", label: "Pricing" },
-        { href: "/memberhub/#features", label: "Features" },
+        { href: "/pricing", label: "Pricing" },
+        { href: "/#features", label: "Features" },
       ];
 
   return (
@@ -33,7 +33,7 @@ export default function Navbar() {
       borderBottom: "1px solid var(--border)", padding: "0 1.5rem",
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
-        <Link href="/memberhub" style={{ display: "flex", alignItems: "center", gap: 10, fontWeight: 800, fontSize: 20 }}>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, fontWeight: 800, fontSize: 20 }}>
           <IconShieldCheck size={28} color="#0d9488" />
           <span className="gradient-text">MemberHub</span>
         </Link>
@@ -44,12 +44,12 @@ export default function Navbar() {
               className="nav-link">{l.label}</Link>
           ))}
           {user ? (
-            <button onClick={() => { localStorage.removeItem("memberhub_token"); localStorage.removeItem("memberhub_user"); window.location.href = "/memberhub"; }}
+            <button onClick={() => { localStorage.removeItem("memberhub_token"); localStorage.removeItem("memberhub_user"); window.location.href = "/"; }}
               style={{ padding: "8px 14px", fontSize: 13, fontWeight: 600, color: "#ef4444" }}>
               Sign Out
             </button>
           ) : (
-            <Link href="/memberhub/signin" className="btn-primary" style={{ padding: "8px 20px", fontSize: 13 }}>
+            <Link href="/signin" className="btn-primary" style={{ padding: "8px 20px", fontSize: 13 }}>
               Sign In
             </Link>
           )}

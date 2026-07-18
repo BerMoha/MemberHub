@@ -21,10 +21,10 @@ export default function DashboardPage() {
   ];
 
   const actions = [
-    { icon: IconPlus, label: "Add Member", href: "/memberhub/members/new" },
-    { icon: IconFileText, label: "Create Content", href: "/memberhub/content/new" },
-    { icon: IconCreditCard, label: "Manage Plans", href: "/memberhub/plans" },
-    { icon: IconSettings, label: "Settings", href: "/memberhub/settings" },
+    { icon: IconPlus, label: "Add Member", href: "/members/new" },
+    { icon: IconFileText, label: "Create Content", href: "/content/new" },
+    { icon: IconCreditCard, label: "Manage Plans", href: "/plans" },
+    { icon: IconSettings, label: "Settings", href: "/settings" },
   ];
 
   return (
@@ -97,7 +97,7 @@ export default function DashboardPage() {
             <div style={{ fontSize: 14, fontWeight: 700 }}>Current Plan: <span className="gradient-text">{user?.plan || "Free Trial"}</span></div>
             <div style={{ fontSize: 12, color: "var(--muted)", marginTop: 4 }}>14 days remaining in trial</div>
           </div>
-          <Link href="/memberhub/pricing" className="btn-primary" style={{ padding: "10px 20px", fontSize: 13 }}>
+          <Link href="/pricing" className="btn-primary" style={{ padding: "10px 20px", fontSize: 13 }}>
             Upgrade Plan
           </Link>
         </div>

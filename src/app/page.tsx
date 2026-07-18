@@ -66,10 +66,10 @@ export default function Home() {
           AI-powered insights, and community tools — so you can focus on growing your organization.
         </p>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-          <Link href="/memberhub/signin?tab=register" className="btn-primary" style={{ padding: "14px 32px", fontSize: 15 }}>
+          <Link href="/signin?tab=register" className="btn-primary" style={{ padding: "14px 32px", fontSize: 15 }}>
             Start Free Trial <IconArrowRight size={18} />
           </Link>
-          <Link href="/memberhub/#features" className="btn-outline" style={{ padding: "14px 32px", fontSize: 15 }}>
+          <Link href="/#features" className="btn-outline" style={{ padding: "14px 32px", fontSize: 15 }}>
             See Features
           </Link>
         </div>
@@ -194,7 +194,7 @@ export default function Home() {
           <p style={{ fontSize: 14, color: "var(--muted)", marginBottom: 24, maxWidth: 450, margin: "0 auto 24px" }}>
             Join organizations already using MemberHub to grow and engage their communities.
           </p>
-          <Link href="/memberhub/signin?tab=register" className="btn-primary" style={{ padding: "14px 36px", fontSize: 15 }}>
+          <Link href="/signin?tab=register" className="btn-primary" style={{ padding: "14px 36px", fontSize: 15 }}>
             Start Your Free Trial <IconArrowRight size={18} />
           </Link>
         </div>

@@ -143,7 +143,7 @@ export default function PricingPage() {
                 ))}
               </div>
 
-              <Link href="/memberhub/signin?tab=register" style={{
+              <Link href="/signin?tab=register" style={{
                 marginTop: 20, padding: 14, borderRadius: 11, fontSize: 13, fontWeight: 700,
                 textDecoration: "none", display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
                 background: plan.highlighted ? "linear-gradient(135deg, #0d9488, #6366f1)" : "transparent",
