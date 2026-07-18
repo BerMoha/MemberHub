@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { IconMenu2, IconX, IconShieldCheck } from "@tabler/icons-react";
+import { IconMenu2, IconX } from "@tabler/icons-react";
+import Logo from "./Logo";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -34,7 +35,7 @@ export default function Navbar() {
     }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, fontWeight: 800, fontSize: 20 }}>
-          <IconShieldCheck size={28} color="#0d9488" />
+          <Logo size={34} />
           <span className="gradient-text">MemberHub</span>
         </Link>
 

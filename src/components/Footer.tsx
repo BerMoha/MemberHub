@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IconShieldCheck } from "@tabler/icons-react";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
@@ -8,7 +8,7 @@ export default function Footer() {
       display: "flex", flexDirection: "column", alignItems: "center", gap: 16,
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <IconShieldCheck size={22} color="#0d9488" />
+        <Logo size={26} />
         <span style={{ fontWeight: 700, fontSize: 16 }} className="gradient-text">MemberHub</span>
       </div>
       <div style={{ display: "flex", gap: 24, fontSize: 13, color: "#6b7280" }}>
