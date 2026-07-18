@@ -33,9 +33,9 @@ export default function Navbar() {
       background: "rgba(3, 7, 18, 0.85)", backdropFilter: "blur(12px)",
       borderBottom: "1px solid var(--border)", padding: "0 1.5rem",
     }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 64 }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: 10, fontWeight: 800, fontSize: 20 }}>
-          <Logo size={34} />
+          <Logo size={42} />
           <span className="gradient-text">MemberHub</span>
         </Link>
 
