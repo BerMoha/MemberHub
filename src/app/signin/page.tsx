@@ -23,7 +23,7 @@ function SignInForm() {
     try {
       if (tab === "login") await login(email, password);
       else await register(email, password, name);
-      router.push("/dashboard");
+      window.location.href = "/dashboard";
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
@@ -35,7 +35,7 @@ function SignInForm() {
     setLoading(true);
     const demoEmail = provider === "google" ? "demo@gmail.com" : "demo@github.com";
     await login(demoEmail, "demo");
-    router.push("/dashboard");
+    window.location.href = "/dashboard";
   };
 
   return (
