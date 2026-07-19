@@ -16,12 +16,17 @@ export default function Navbar() {
     }
   }, []);
 
+  const isAdmin = user?.role === "admin";
   const links = user
     ? [
         { href: "/dashboard", label: "Dashboard" },
-        { href: "/members", label: "Members" },
-        { href: "/content", label: "Content" },
-        { href: "/settings", label: "Settings" },
+        ...(isAdmin ? [
+          { href: "/members", label: "Members" },
+          { href: "/content", label: "Content" },
+          { href: "/settings", label: "Settings" },
+        ] : [
+          { href: "/pricing", label: "Upgrade" },
+        ]),
       ]
     : [
         { href: "/pricing", label: "Pricing" },

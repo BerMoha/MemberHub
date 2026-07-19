@@ -1,12 +1,12 @@
 export async function login(email: string, _password: string) {
-  const user = { email, role: "admin", plan: "Professional" };
+  const user = { email, name: email.split("@")[0], role: "member", plan: "Pro", joined: "Jul 19, 2026" };
   localStorage.setItem("memberhub_token", "demo_token_" + Date.now());
   localStorage.setItem("memberhub_user", JSON.stringify(user));
   return user;
 }
 
 export async function register(email: string, _password: string, name?: string) {
-  const user = { email, name: name || email.split("@")[0], role: "admin", plan: "Free Trial" };
+  const user = { email, name: name || email.split("@")[0], role: "member", plan: "Free Trial", joined: "Jul 19, 2026" };
   localStorage.setItem("memberhub_token", "demo_token_" + Date.now());
   localStorage.setItem("memberhub_user", JSON.stringify(user));
   return user;
