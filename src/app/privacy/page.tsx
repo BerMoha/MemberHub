@@ -32,7 +32,7 @@ export default function PrivacyPage() {
 
         <h2 style={{ fontSize: 18, fontWeight: 700, color: "var(--text)", marginBottom: 10 }}>6. Contact</h2>
         <p>
-          For privacy-related inquiries, contact us at <a href="mailto:privacy@solvatex.com" style={{ color: "#0d9488", fontWeight: 600 }}>privacy@solvatex.com</a>.
+          For privacy-related inquiries, contact us at <a href="mailto:support@solvatex.com" style={{ color: "#0d9488", fontWeight: 600 }}>support@solvatex.com</a>.
         </p>
       </div>
     </section>

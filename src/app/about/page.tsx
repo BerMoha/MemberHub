@@ -35,7 +35,7 @@ export default function AboutPage() {
       <div className="card" style={{ padding: "2rem", textAlign: "center", background: "linear-gradient(135deg, rgba(13,148,136,0.06), rgba(99,102,241,0.06))" }}>
         <h2 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>Contact Us</h2>
         <p style={{ fontSize: 13, color: "var(--muted)" }}>
-          Have questions? Reach out at <a href="mailto:contact@solvatex.com" style={{ color: "#0d9488", fontWeight: 600 }}>contact@solvatex.com</a>
+          Have questions? Reach out at <a href="mailto:support@solvatex.com" style={{ color: "#0d9488", fontWeight: 600 }}>support@solvatex.com</a>
         </p>
       </div>
     </section>

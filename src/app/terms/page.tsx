@@ -37,7 +37,7 @@ export default function TermsPage() {
 
         <h2 style={{ fontSize: 18, fontWeight: 700, color: "var(--text)", marginBottom: 10 }}>7. Contact</h2>
         <p>
-          For questions about these terms, contact us at <a href="mailto:legal@solvatex.com" style={{ color: "#0d9488", fontWeight: 600 }}>legal@solvatex.com</a>.
+          For questions about these terms, contact us at <a href="mailto:support@solvatex.com" style={{ color: "#0d9488", fontWeight: 600 }}>support@solvatex.com</a>.
         </p>
       </div>
     </section>
