@@ -18,16 +18,17 @@ export default function Navbar() {
 
   const isAdmin = user?.role === "admin";
   const links = user
-    ? [
-        { href: "/dashboard", label: "Dashboard" },
-        ...(isAdmin ? [
+    ? isAdmin
+      ? [
+          { href: "/dashboard", label: "Dashboard" },
           { href: "/members", label: "Members" },
           { href: "/content", label: "Content" },
           { href: "/settings", label: "Settings" },
-        ] : [
+        ]
+      : [
+          { href: "/profile", label: "My Profile" },
           { href: "/pricing", label: "Upgrade" },
-        ]),
-      ]
+        ]
     : [
         { href: "/pricing", label: "Pricing" },
         { href: "/#features", label: "Features" },
