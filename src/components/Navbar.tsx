@@ -52,7 +52,7 @@ export default function Navbar() {
               className="nav-link">{l.label}</Link>
           ))}
           {user ? (
-            <button onClick={() => { localStorage.removeItem("memberhub_token"); localStorage.removeItem("memberhub_user"); window.location.href = "/"; }}
+            <button onClick={() => { localStorage.removeItem("memberhub_token"); localStorage.removeItem("memberhub_user"); localStorage.setItem("memberhub_signedout", "true"); window.location.href = "/"; }}
               style={{ padding: "8px 14px", fontSize: 13, fontWeight: 600, color: "#ef4444" }}>
               Sign Out
             </button>

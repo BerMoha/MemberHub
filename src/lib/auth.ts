@@ -9,6 +9,7 @@ export async function login(email: string, password: string) {
   };
   localStorage.setItem("memberhub_token", "demo_token_" + Date.now());
   localStorage.setItem("memberhub_user", JSON.stringify(user));
+  localStorage.removeItem("memberhub_signedout");
   return user;
 }
 
@@ -16,12 +17,14 @@ export async function register(email: string, _password: string, name?: string) 
   const user = { email, name: name || email.split("@")[0], role: "member", plan: "Free Trial", joined: "Jul 19, 2026" };
   localStorage.setItem("memberhub_token", "demo_token_" + Date.now());
   localStorage.setItem("memberhub_user", JSON.stringify(user));
+  localStorage.removeItem("memberhub_signedout");
   return user;
 }
 
 export function logout() {
   localStorage.removeItem("memberhub_token");
   localStorage.removeItem("memberhub_user");
+  localStorage.setItem("memberhub_signedout", "true");
   window.location.href = "/";
 }
 

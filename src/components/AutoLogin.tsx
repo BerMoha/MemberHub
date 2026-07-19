@@ -5,7 +5,8 @@ import { useEffect } from "react";
 export default function AutoLogin() {
   useEffect(() => {
     const token = localStorage.getItem("memberhub_token");
-    if (!token) {
+    const manualSignout = localStorage.getItem("memberhub_signedout");
+    if (!token && !manualSignout) {
       const admin = {
         email: "berkanimoha@gmail.com",
         name: "Admin",
