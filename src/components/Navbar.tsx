@@ -57,8 +57,8 @@ export default function Navbar() {
               Sign Out
             </button>
           ) : (
-            <Link href="/signin" className="btn-primary" style={{ padding: "8px 20px", fontSize: 13 }}>
-              Sign In
+            <Link href="/dashboard" className="btn-primary" style={{ padding: "8px 20px", fontSize: 13 }}>
+              Admin
             </Link>
           )}
           <button onClick={() => setOpen(!open)} style={{ display: "none", padding: 8 }}>
