@@ -1,12 +1,13 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   IconUsers, IconCreditCard, IconLock, IconBrandOpenai,
   IconDeviceMobile, IconChartBar, IconMail, IconCalendar,
   IconCloudUpload, IconApi, IconShieldCheck, IconMessages,
-  IconArrowRight, IconTrendingUp, IconUserPlus, IconStar,
-  IconSearch, IconFilter, IconDotsVertical, IconCheck,
+  IconArrowRight, IconTrendingUp, IconUserPlus,
+  IconSearch, IconFilter, IconDotsVertical,
 } from "@tabler/icons-react";
 
 const members = [
@@ -19,10 +20,10 @@ const members = [
 ];
 
 const stats = [
-  { icon: IconUsers, label: "Total Members", value: "2,847", change: "+12.5%", up: true, color: "#0d9488" },
-  { icon: IconCreditCard, label: "Monthly Revenue", value: "$24,580", change: "+8.3%", up: true, color: "#6366f1" },
-  { icon: IconTrendingUp, label: "Growth Rate", value: "23%", change: "+4.1%", up: true, color: "#10b981" },
-  { icon: IconChartBar, label: "Engagement", value: "78%", change: "+5.2%", up: true, color: "#f59e0b" },
+  { icon: IconUsers, label: "Total Members", value: "2,847", change: "+12.5%", color: "#0d9488" },
+  { icon: IconCreditCard, label: "Monthly Revenue", value: "$24,580", change: "+8.3%", color: "#6366f1" },
+  { icon: IconTrendingUp, label: "Growth Rate", value: "23%", change: "+4.1%", color: "#10b981" },
+  { icon: IconChartBar, label: "Engagement", value: "78%", change: "+5.2%", color: "#f59e0b" },
 ];
 
 const activity = [
@@ -48,10 +49,9 @@ const features = [
   { icon: IconShieldCheck, title: "SSO & OAuth", desc: "Google, GitHub, SAML, role-based access" },
 ];
 
-export default function Home() {
+function AdminDashboard() {
   return (
     <main style={{ overflow: "hidden" }}>
-      {/* Dashboard Preview */}
       <section style={{ padding: "2rem 1.5rem 1rem", maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
           <div>
@@ -62,21 +62,17 @@ export default function Home() {
             <button className="btn-outline" style={{ padding: "8px 16px", fontSize: 12 }}>
               <IconCalendar size={14} /> Last 30 days
             </button>
-            <Link href="/signin?tab=register" className="btn-primary" style={{ padding: "8px 16px", fontSize: 12 }}>
+            <Link href="/members" className="btn-primary" style={{ padding: "8px 16px", fontSize: 12 }}>
               <IconUserPlus size={14} /> Add Member
             </Link>
           </div>
         </div>
 
-        {/* Stats row */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14, marginBottom: 20 }}>
           {stats.map(s => (
             <div key={s.label} className="card" style={{ padding: "1.2rem" }}>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-                <div style={{
-                  width: 36, height: 36, borderRadius: 10, display: "grid", placeItems: "center",
-                  background: `${s.color}18`, border: `1px solid ${s.color}30`,
-                }}>
+                <div style={{ width: 36, height: 36, borderRadius: 10, display: "grid", placeItems: "center", background: `${s.color}18`, border: `1px solid ${s.color}30` }}>
                   <s.icon size={18} color={s.color} />
                 </div>
                 <span style={{ fontSize: 11, color: "#10b981", fontWeight: 600, display: "flex", alignItems: "center", gap: 3 }}>
@@ -89,9 +85,7 @@ export default function Home() {
           ))}
         </div>
 
-        {/* Main grid: Members table + Activity */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 16, marginBottom: 20 }}>
-          {/* Members table */}
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
             <div style={{ padding: "1rem 1.2rem", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--border)" }}>
               <h2 style={{ fontSize: 14, fontWeight: 700 }}>Members</h2>
@@ -118,9 +112,7 @@ export default function Home() {
                     <tr key={m.email} style={{ borderBottom: "1px solid var(--border)" }}>
                       <td style={{ padding: "10px 16px" }}>
                         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                          <div style={{ width: 32, height: 32, borderRadius: 8, display: "grid", placeItems: "center", background: `${m.color}20`, color: m.color, fontSize: 11, fontWeight: 700 }}>
-                            {m.avatar}
-                          </div>
+                          <div style={{ width: 32, height: 32, borderRadius: 8, display: "grid", placeItems: "center", background: `${m.color}20`, color: m.color, fontSize: 11, fontWeight: 700 }}>{m.avatar}</div>
                           <div>
                             <div style={{ fontWeight: 600 }}>{m.name}</div>
                             <div style={{ fontSize: 11, color: "var(--muted)" }}>{m.email}</div>
@@ -128,24 +120,15 @@ export default function Home() {
                         </div>
                       </td>
                       <td style={{ padding: "10px 16px" }}>
-                        <span style={{
-                          padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600,
-                          background: m.tier === "Enterprise" ? "rgba(99,102,241,0.15)" : m.tier === "Pro" ? "rgba(13,148,136,0.15)" : "rgba(107,114,128,0.15)",
-                          color: m.tier === "Enterprise" ? "#818cf8" : m.tier === "Pro" ? "#14b8a6" : "#9ca3af",
-                        }}>
-                          {m.tier}
-                        </span>
+                        <span style={{ padding: "3px 10px", borderRadius: 6, fontSize: 11, fontWeight: 600, background: m.tier === "Enterprise" ? "rgba(99,102,241,0.15)" : m.tier === "Pro" ? "rgba(13,148,136,0.15)" : "rgba(107,114,128,0.15)", color: m.tier === "Enterprise" ? "#818cf8" : m.tier === "Pro" ? "#14b8a6" : "#9ca3af" }}>{m.tier}</span>
                       </td>
                       <td style={{ padding: "10px 16px" }}>
                         <span style={{ display: "flex", alignItems: "center", gap: 5, fontSize: 12 }}>
-                          <span style={{ width: 6, height: 6, borderRadius: "50%", background: m.status === "Active" ? "#10b981" : "#f59e0b" }} />
-                          {m.status}
+                          <span style={{ width: 6, height: 6, borderRadius: "50%", background: m.status === "Active" ? "#10b981" : "#f59e0b" }} />{m.status}
                         </span>
                       </td>
                       <td style={{ padding: "10px 16px", fontSize: 12, color: "var(--muted)" }}>{m.joined}</td>
-                      <td style={{ padding: "10px 16px" }}>
-                        <IconDotsVertical size={16} color="#6b7280" />
-                      </td>
+                      <td style={{ padding: "10px 16px" }}><IconDotsVertical size={16} color="#6b7280" /></td>
                     </tr>
                   ))}
                 </tbody>
@@ -153,7 +136,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Activity feed */}
           <div className="card" style={{ padding: 0, overflow: "hidden" }}>
             <div style={{ padding: "1rem 1.2rem", borderBottom: "1px solid var(--border)" }}>
               <h2 style={{ fontSize: 14, fontWeight: 700 }}>Recent Activity</h2>
@@ -169,16 +151,11 @@ export default function Home() {
                 </div>
               ))}
             </div>
-
-            {/* Revenue chart placeholder */}
             <div style={{ padding: "1rem 1.2rem", borderTop: "1px solid var(--border)" }}>
               <div style={{ fontSize: 12, fontWeight: 600, marginBottom: 10 }}>Revenue (6 months)</div>
               <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height: 80 }}>
                 {[45, 52, 48, 65, 72, 84].map((h, i) => (
-                  <div key={i} style={{
-                    flex: 1, height: `${h}%`, borderRadius: "4px 4px 0 0",
-                    background: i === 5 ? "linear-gradient(180deg, #0d9488, #6366f1)" : "rgba(13,148,136,0.2)",
-                  }} />
+                  <div key={i} style={{ flex: 1, height: `${h}%`, borderRadius: "4px 4px 0 0", background: i === 5 ? "linear-gradient(180deg, #0d9488, #6366f1)" : "rgba(13,148,136,0.2)" }} />
                 ))}
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, fontSize: 10, color: "var(--muted)" }}>
@@ -189,16 +166,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features grid */}
       <section style={{ padding: "2rem 1.5rem 3rem", maxWidth: 1200, margin: "0 auto" }}>
         <h2 style={{ fontSize: 18, fontWeight: 700, marginBottom: 16 }}>Platform Capabilities</h2>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: 12 }}>
           {features.map(f => (
             <div key={f.title} className="card" style={{ padding: "1.2rem", display: "flex", alignItems: "flex-start", gap: 12 }}>
-              <div style={{
-                width: 36, height: 36, borderRadius: 10, display: "grid", placeItems: "center",
-                background: "rgba(13, 148, 136, 0.1)", border: "1px solid rgba(13, 148, 136, 0.2)", flexShrink: 0,
-              }}>
+              <div style={{ width: 36, height: 36, borderRadius: 10, display: "grid", placeItems: "center", background: "rgba(13, 148, 136, 0.1)", border: "1px solid rgba(13, 148, 136, 0.2)", flexShrink: 0 }}>
                 <f.icon size={18} color="#0d9488" />
               </div>
               <div>
@@ -209,20 +182,68 @@ export default function Home() {
           ))}
         </div>
       </section>
+    </main>
+  );
+}
 
-      {/* CTA */}
-      <section style={{ padding: "1rem 1.5rem 3rem", textAlign: "center" }}>
+function GuestLanding() {
+  return (
+    <main style={{ overflow: "hidden" }}>
+      <section style={{ padding: "5rem 1.5rem 4rem", textAlign: "center", maxWidth: 900, margin: "0 auto" }}>
+        <div style={{
+          display: "inline-block", padding: "6px 18px", borderRadius: 20,
+          background: "rgba(13, 148, 136, 0.1)", border: "1px solid rgba(13, 148, 136, 0.25)",
+          fontSize: 12, fontWeight: 600, color: "#0d9488", marginBottom: 20,
+        }}>
+          Membership Management, Reimagined
+        </div>
+        <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.2rem)", fontWeight: 800, lineHeight: 1.15, marginBottom: 20 }}>
+          The <span className="gradient-text">all-in-one platform</span> to manage
+          <br />members, subscriptions & content
+        </h1>
+        <p style={{ fontSize: 16, color: "var(--muted)", maxWidth: 600, margin: "0 auto 32px", lineHeight: 1.7 }}>
+          MemberHub combines member management, subscription billing, content gating,
+          AI-powered insights, and community tools — so you can focus on growing your organization.
+        </p>
+        <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+          <Link href="/signin?tab=register" className="btn-primary" style={{ padding: "14px 32px", fontSize: 15 }}>
+            Start Free Trial <IconArrowRight size={18} />
+          </Link>
+          <Link href="/pricing" className="btn-outline" style={{ padding: "14px 32px", fontSize: 15 }}>
+            See Pricing
+          </Link>
+        </div>
+      </section>
+
+      <section style={{ padding: "2rem 1.5rem 3rem", maxWidth: 1100, margin: "0 auto" }}>
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 10 }}>
+            Everything you need to <span className="gradient-text">run memberships</span>
+          </h2>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))", gap: 14 }}>
+          {features.map(f => (
+            <div key={f.title} className="card" style={{ padding: "1.4rem", display: "flex", alignItems: "flex-start", gap: 12 }}>
+              <div style={{ width: 40, height: 40, borderRadius: 10, display: "grid", placeItems: "center", background: "rgba(13, 148, 136, 0.1)", border: "1px solid rgba(13, 148, 136, 0.2)", flexShrink: 0 }}>
+                <f.icon size={20} color="#0d9488" />
+              </div>
+              <div>
+                <h3 style={{ fontSize: 14, fontWeight: 700, marginBottom: 4 }}>{f.title}</h3>
+                <p style={{ fontSize: 12.5, color: "var(--muted)", lineHeight: 1.5 }}>{f.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section style={{ padding: "2rem 1.5rem 4rem", textAlign: "center" }}>
         <div className="card" style={{
           maxWidth: 600, margin: "0 auto", padding: "2.5rem 2rem",
           background: "linear-gradient(135deg, rgba(13, 148, 136, 0.08), rgba(99, 102, 241, 0.08))",
           border: "1px solid rgba(13, 148, 136, 0.2)",
         }}>
-          <h2 style={{ fontSize: 22, fontWeight: 800, marginBottom: 10 }}>
-            Ready to get started?
-          </h2>
-          <p style={{ fontSize: 13, color: "var(--muted)", marginBottom: 20 }}>
-            14-day free trial. No credit card required.
-          </p>
+          <h2 style={{ fontSize: 22, fontWeight: 800, marginBottom: 10 }}>Ready to get started?</h2>
+          <p style={{ fontSize: 13, color: "var(--muted)", marginBottom: 20 }}>14-day free trial. No credit card required.</p>
           <Link href="/signin?tab=register" className="btn-primary" style={{ padding: "12px 28px", fontSize: 14 }}>
             Start Free Trial <IconArrowRight size={16} />
           </Link>
@@ -230,4 +251,24 @@ export default function Home() {
       </section>
     </main>
   );
+}
+
+export default function Home() {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const raw = localStorage.getItem("memberhub_user");
+    if (raw) {
+      try {
+        const user = JSON.parse(raw);
+        setIsAdmin(user.role === "admin");
+      } catch {}
+    }
+    setLoaded(true);
+  }, []);
+
+  if (!loaded) return null;
+
+  return isAdmin ? <AdminDashboard /> : <GuestLanding />;
 }
