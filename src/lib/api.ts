@@ -1,6 +1,6 @@
 const BASE = typeof window !== "undefined"
-  ? (process.env.NEXT_PUBLIC_API_URL || "/memberhub")
-  : (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/memberhub");
+  ? (process.env.NEXT_PUBLIC_API_URL || "")
+  : (process.env.NEXT_PUBLIC_API_URL || "");
 
 export async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const token = typeof window !== "undefined" ? localStorage.getItem("memberhub_token") : null;

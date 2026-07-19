@@ -1,25 +1,15 @@
-import { apiFetch } from "./api";
-
-interface AuthResponse { access_token: string; user: { email: string; role?: string } }
-
-export async function login(email: string, password: string) {
-  const data = await apiFetch<AuthResponse>("/api/v1/auth/login", {
-    method: "POST",
-    body: JSON.stringify({ email, password }),
-  });
-  localStorage.setItem("memberhub_token", data.access_token);
-  localStorage.setItem("memberhub_user", JSON.stringify(data.user));
-  return data.user;
+export async function login(email: string, _password: string) {
+  const user = { email, role: "admin", plan: "Professional" };
+  localStorage.setItem("memberhub_token", "demo_token_" + Date.now());
+  localStorage.setItem("memberhub_user", JSON.stringify(user));
+  return user;
 }
 
-export async function register(email: string, password: string, name?: string) {
-  const data = await apiFetch<AuthResponse>("/api/v1/auth/register", {
-    method: "POST",
-    body: JSON.stringify({ email, password, name }),
-  });
-  localStorage.setItem("memberhub_token", data.access_token);
-  localStorage.setItem("memberhub_user", JSON.stringify(data.user));
-  return data.user;
+export async function register(email: string, _password: string, name?: string) {
+  const user = { email, name: name || email.split("@")[0], role: "admin", plan: "Free Trial" };
+  localStorage.setItem("memberhub_token", "demo_token_" + Date.now());
+  localStorage.setItem("memberhub_user", JSON.stringify(user));
+  return user;
 }
 
 export function logout() {

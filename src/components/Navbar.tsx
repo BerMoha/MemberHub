@@ -19,8 +19,9 @@ export default function Navbar() {
   const links = user
     ? [
         { href: "/dashboard", label: "Dashboard" },
-        ...(user.role === "admin" ? [{ href: "/admin", label: "Admin" }] : []),
-        { href: "/profile", label: "Profile" },
+        { href: "/members", label: "Members" },
+        { href: "/content", label: "Content" },
+        { href: "/settings", label: "Settings" },
       ]
     : [
         { href: "/pricing", label: "Pricing" },

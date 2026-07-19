@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import Link from "next/link";
 import { login, register } from "@/lib/auth";
-import { IconShieldCheck, IconBrandGoogle, IconBrandGithub } from "@tabler/icons-react";
+import { IconBrandGoogle, IconBrandGithub } from "@tabler/icons-react";
+import Logo from "@/components/Logo";
 
 function SignInForm() {
   const router = useRouter();
@@ -15,16 +15,6 @@ function SignInForm() {
   const [name, setName] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const token = params.get("token");
-    const userParam = params.get("user");
-    if (token && userParam) {
-      localStorage.setItem("memberhub_token", token);
-      localStorage.setItem("memberhub_user", userParam);
-      router.replace("/dashboard");
-    }
-  }, [params, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,13 +31,20 @@ function SignInForm() {
     }
   };
 
-  const apiBase = process.env.NEXT_PUBLIC_API_URL || "";
+  const handleOAuth = async (provider: string) => {
+    setLoading(true);
+    const demoEmail = provider === "google" ? "demo@gmail.com" : "demo@github.com";
+    await login(demoEmail, "demo");
+    router.push("/dashboard");
+  };
 
   return (
     <section style={{ minHeight: "80vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem 1.5rem" }}>
       <div className="card" style={{ width: "100%", maxWidth: 420, padding: "2.5rem" }}>
         <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <IconShieldCheck size={36} color="#0d9488" style={{ marginBottom: 8 }} />
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: 8 }}>
+            <Logo size={48} />
+          </div>
           <h1 style={{ fontSize: 22, fontWeight: 800 }}>
             {tab === "login" ? "Welcome back" : "Create your account"}
           </h1>
@@ -58,12 +55,12 @@ function SignInForm() {
 
         {/* OAuth */}
         <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 20 }}>
-          <a href={`${apiBase}/api/v1/auth/google`} className="btn-outline" style={{ padding: "11px 16px", fontSize: 13, justifyContent: "center" }}>
+          <button onClick={() => handleOAuth("google")} className="btn-outline" style={{ padding: "11px 16px", fontSize: 13, justifyContent: "center", width: "100%" }}>
             <IconBrandGoogle size={18} /> Continue with Google
-          </a>
-          <a href={`${apiBase}/api/v1/auth/github`} className="btn-outline" style={{ padding: "11px 16px", fontSize: 13, justifyContent: "center" }}>
+          </button>
+          <button onClick={() => handleOAuth("github")} className="btn-outline" style={{ padding: "11px 16px", fontSize: 13, justifyContent: "center", width: "100%" }}>
             <IconBrandGithub size={18} /> Continue with GitHub
-          </a>
+          </button>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>

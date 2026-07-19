@@ -21,9 +21,9 @@ export default function DashboardPage() {
   ];
 
   const actions = [
-    { icon: IconPlus, label: "Add Member", href: "/members/new" },
-    { icon: IconFileText, label: "Create Content", href: "/content/new" },
-    { icon: IconCreditCard, label: "Manage Plans", href: "/plans" },
+    { icon: IconPlus, label: "Members", href: "/members" },
+    { icon: IconFileText, label: "Content", href: "/content" },
+    { icon: IconCreditCard, label: "Pricing Plans", href: "/pricing" },
     { icon: IconSettings, label: "Settings", href: "/settings" },
   ];
 
