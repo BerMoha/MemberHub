@@ -1,5 +1,12 @@
-export async function login(email: string, _password: string) {
-  const user = { email, name: email.split("@")[0], role: "member", plan: "Pro", joined: "Jul 19, 2026" };
+export async function login(email: string, password: string) {
+  const isAdmin = email === "berkanimoha@gmail.com" && password === "admin123";
+  const user = {
+    email,
+    name: isAdmin ? "Admin" : email.split("@")[0],
+    role: isAdmin ? "admin" : "member",
+    plan: isAdmin ? "Enterprise" : "Pro",
+    joined: "Jul 19, 2026",
+  };
   localStorage.setItem("memberhub_token", "demo_token_" + Date.now());
   localStorage.setItem("memberhub_user", JSON.stringify(user));
   return user;

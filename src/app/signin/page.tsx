@@ -21,9 +21,10 @@ function SignInForm() {
     setError("");
     setLoading(true);
     try {
-      if (tab === "login") await login(email, password);
-      else await register(email, password, name);
-      window.location.href = "/profile";
+      let user;
+      if (tab === "login") user = await login(email, password);
+      else user = await register(email, password, name);
+      window.location.href = user.role === "admin" ? "/dashboard" : "/profile";
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Something went wrong");
     } finally {
