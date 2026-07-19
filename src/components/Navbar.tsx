@@ -31,7 +31,7 @@ export default function Navbar() {
         ]
     : [
         { href: "/pricing", label: "Pricing" },
-        { href: "/#features", label: "Features" },
+        { href: "/features", label: "Features" },
       ];
 
   return (
