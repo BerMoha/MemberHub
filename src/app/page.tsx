@@ -254,21 +254,5 @@ function GuestLanding() {
 }
 
 export default function Home() {
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    const raw = localStorage.getItem("memberhub_user");
-    if (raw) {
-      try {
-        const user = JSON.parse(raw);
-        setIsAdmin(user.role === "admin");
-      } catch {}
-    }
-    setLoaded(true);
-  }, []);
-
-  if (!loaded) return null;
-
-  return isAdmin ? <AdminDashboard /> : <GuestLanding />;
+  return <AdminDashboard />;
 }
